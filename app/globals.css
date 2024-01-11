@@ -2,26 +2,44 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+/* CARDS */
+.card-wrapper {
+  @apply h-screen flex flex-col items-center justify-center gradient--light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.card-auth {
+  @apply bg-white shadow-[0_0px_30px_5px_rgba(0,0,0,0.2)] flex flex-col justify-center w-10/12 md:w-5/12 xl:w-3/12 mx-auto p-10;
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* BUTTONS */
+.btn {
+  @apply flex px-10 py-3 font-semibold my-5 transition-all duration-300;
+}
+
+.btn--primary {
+  @apply bg-blue-400 text-white hover:bg-teal-300;
+}
+
+/* CHECKBOX */
+.checkbox-wrapper input[type="checkbox"] {
+  @apply appearance-none w-5 h-5 border border-gray-300 outline-none cursor-pointer relative;
+}
+
+.checkbox-wrapper input[type="checkbox"].checked {
+  @apply bg-blue-500;
+}
+
+.checkbox-wrapper input[type="checkbox"].checked::before {
+  content: "";
+  background-image: url("/images/svg/checkbox.svg");
+  width: 0.725rem;
+  height: 0.725rem;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+}
+
+/* GRADIENTS */
+.gradient--light {
+  background: linear-gradient(175deg, rgba(153, 229, 255, 0.38141193977591037) 50%, rgba(240, 251, 255, 0) 50%);
 }
