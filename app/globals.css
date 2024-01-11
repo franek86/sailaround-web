@@ -8,7 +8,7 @@
 }
 
 .card-auth {
-  @apply bg-white shadow-[0_0px_30px_5px_rgba(0,0,0,0.2)] flex flex-col justify-center w-10/12 md:w-5/12 xl:w-3/12 mx-auto p-10;
+  @apply bg-white shadow-[0_0px_30px_5px_rgba(0,0,0,0.2)] flex flex-col justify-center w-10/12 md:w-5/12 xl:w-4/12 mx-auto p-10;
 }
 
 /* BUTTONS */

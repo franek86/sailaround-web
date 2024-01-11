@@ -13,13 +13,13 @@ const Signin = () => {
         </Title>
 
         <SignUpForm />
-        <div className="text-sm text-center mt-10">
-          Have an account?{" "}
-          <Link className="text-sky-800 hover:text-teal-500" href="/sign-in">
-            Sing in
-          </Link>
-        </div>
       </Card>
+      <div className="text-sm text-center mt-10">
+        Have an account?{" "}
+        <Link className="text-sky-800 hover:text-teal-500" href="/sign-in">
+          Sing in
+        </Link>
+      </div>
     </div>
   );
 };

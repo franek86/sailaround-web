@@ -16,13 +16,13 @@ const Signin = () => {
         <Link className="text-sky-800 text-sm hover:text-teal-500" href="/forgot-password">
           Forgot your password?
         </Link>
-        <div className="text-sm text-center mt-10">
-          Don't have an account?{" "}
-          <Link className="text-sky-800 hover:text-teal-500" href="/sign-up">
-            Sign up
-          </Link>
-        </div>
       </Card>
+      <div className="text-sm text-center mt-10">
+        Don't have an account?{" "}
+        <Link className="text-sky-800 hover:text-teal-500" href="/sign-up">
+          Sign up
+        </Link>
+      </div>
     </section>
   );
 };
