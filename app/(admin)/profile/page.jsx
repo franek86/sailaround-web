@@ -1,7 +1,14 @@
 import React from "react";
+import Title from "@/app/components/Title";
 
 const Profile = () => {
-  return <div>Profile</div>;
+  return (
+    <>
+      <Title level="1" addClasses="text-3xl">
+        Profile
+      </Title>
+    </>
+  );
 };
 
 export default Profile;

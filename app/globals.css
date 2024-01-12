@@ -16,6 +16,10 @@
   @apply h-screen flex flex-col items-center justify-center gradient--light;
 }
 
+.card {
+  @apply shadow-[0_0_12px_2px_rgba(0,0,0,0.12)] p-8 rounded-lg transition-all duration-300 hover:scale-105;
+}
+
 .card-auth {
   @apply bg-white shadow-[0_0px_30px_5px_rgba(0,0,0,0.2)] flex flex-col justify-center w-10/12 md:w-5/12 xl:w-4/12 mx-auto p-10;
 }

@@ -1,12 +1,14 @@
-import Title from '@/app/components/Title.jsx'
-import React from 'react'
+import Title from "@/app/components/Title.jsx";
+import React from "react";
 
 const Dashboard = () => {
   return (
-    <div>
-        <Title level="1" addClasses="text-3xl">Dashboard</Title>
-    </div>
-  )
-}
+    <>
+      <Title level="1" addClasses="text-3xl">
+        Dashboard
+      </Title>
+    </>
+  );
+};
 
-export default Dashboard
+export default Dashboard;
