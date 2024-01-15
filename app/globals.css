@@ -33,6 +33,18 @@
   @apply bg-blue-400 text-white hover:bg-teal-300;
 }
 
+.badge__tootletip:hover .tooltip {
+  @apply flex;
+}
+
+.badge--teal {
+  @apply relative text-sm text-white w-28 bg-teal-400 rounded-xl px-2 py-1 text-center cursor-pointer hover:bg-blue-500;
+}
+
+.tooltip {
+  @apply hidden absolute items-center rounded-md bg-blue-50 px-2 py-1 text-xs font-medium text-blue-700 ring-1 ring-inset ring-blue-700/10 w-max transition-all duration-300;
+}
+
 /* CHECKBOX */
 .checkbox-wrapper input[type="checkbox"] {
   @apply appearance-none w-5 h-5 border border-gray-300 outline-none cursor-pointer relative;

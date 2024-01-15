@@ -1,15 +1,32 @@
 import React from "react";
+import Image from "next/image";
 
-const StackedList = (editList, deleteList, baseNumber) => {
+import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+
+const StackedList = ({ twoLetterCode, countryName, flagIcon }) => {
   return (
-    <div className='flex'>
-      <div>Flag</div>
-      <div>IT</div>
-      <div>Italy</div>
-      <div>55 bases</div>
-      <div>
-        <div>Edit</div>
-        <div>Delete</div>
+    <div className="grid grid-cols-3 lg:grid-cols-[5rem,5rem,1fr_1fr_1fr] lg:grid-flow-col items-center gap-3 shadow-md p-5 mb-5 bg-zinc-50">
+      {flagIcon && (
+        <div className="w-8">
+          <Image src={flagIcon} width={40} height={40} alt={countryName} />
+        </div>
+      )}
+      <div className="max-w-10">{twoLetterCode}</div>
+      <div className="uppercase">{countryName}</div>
+      <div className="badge__tootletip badge--teal">
+        55 bases
+        <div class="tooltip">View all bases from {countryName}</div>
+      </div>
+
+      <div className="flex justify-between lg:justify-end col-start-4 col-end-5 lg:col-span-5">
+        <div className="me-3 flex items-center bg-blue-500 text-white px-3 py-2 rounded-lg cursor-pointer hover:opacity-80">
+          <PencilIcon className="h-4 w-4 me-1" />
+          <span className="hidden lg:block">Edit</span>
+        </div>
+        <div className="flex items-center bg-red-600 text-white px-3 py-2 rounded-lg cursor-pointer hover:opacity-80">
+          <TrashIcon className="h-4 w-4 me-1" />
+          <span className="hidden lg:block">Delete</span>
+        </div>
       </div>
     </div>
   );
