@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Breadcrumbs = ({ breadcrumbs }) => {
   return (
-    <nav className="mb-5 block">
+    <nav className="block">
       <ol className="flex text-sm">
         {breadcrumbs.map((breadcrumb, index) => (
           <li key={breadcrumb.href} aria-current={breadcrumb.active} className={breadcrumb.active ? "text-blue-400" : "text-gray-500"}>
