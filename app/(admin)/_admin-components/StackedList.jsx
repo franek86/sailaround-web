@@ -15,7 +15,7 @@ const StackedList = ({ twoLetterCode, countryName, flagIcon, countBases }) => {
       <div className="uppercase">{countryName}</div>
       <div className="badge__tootletip badge--teal">
         {countBases} bases
-        <div class="tooltip">View all bases from {countryName}</div>
+        <div className="tooltip">View all bases from {countryName}</div>
       </div>
 
       <div className="flex justify-between lg:justify-end col-start-4 col-end-5 lg:col-span-5">
