@@ -1,8 +1,10 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
 const FormUpload = ({ register, icon, setValue, watch }) => {
+  const [showPrevImage, setShowPrevImage] = useState("");
+
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     handleImage(file);
@@ -17,21 +19,24 @@ const FormUpload = ({ register, icon, setValue, watch }) => {
   const handleImage = (file) => {
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setValue("image", imageUrl);
+      const fileName = file.name;
+      setValue("iconFlag", fileName);
+      setShowPrevImage(imageUrl);
     }
   };
 
   const handleDeleteImage = () => {
-    setValue("image", null);
+    setValue("iconFlag", null);
+    setShowPrevImage("");
   };
 
-  const image = watch("image");
+  const image = watch("iconFlag");
 
   return (
     <div className="flex w-full" onDragOver={(e) => e.preventDefault()} onDrop={handleDrop}>
-      {image ? (
+      {showPrevImage ? (
         <div className="relative">
-          <img src={image} alt="Profile" style={{ maxWidth: "200px" }} />
+          <img src={showPrevImage} alt="Profile" style={{ maxWidth: "200px" }} />
           <div className="cursor-pointer" onClick={handleDeleteImage}>
             <XMarkIcon className="h-6 w-6 p-1 bg-red-600 text-white rounded-full absolute top-[-6px] right-[-6px] hover:bg-red-400" />
           </div>
