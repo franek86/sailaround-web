@@ -11,8 +11,25 @@ import { Button } from "@/app/components/Button.jsx";
 const CreateCountry = () => {
   const { register, handleSubmit, reset, setValue, watch } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data);
+  const onSubmit = async (data) => {
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("shortCountryCode", data.shortCountryCode);
+    formData.append("longCountryCode", data.shortCountryCode);
+    formData.append("iconFlag", data.iconFlag[0]);
+
+    try {
+      const request = await fetch(
+        "http://localhost:5000/api/v1/countries/create",
+
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -25,15 +42,16 @@ const CreateCountry = () => {
         ]}
       />
 
-      <form className="mt-6" onSubmit={handleSubmit(onSubmit)}>
-        <FormInput register={register("name")} id="country" type="text" label="Country name" name="name" placeholder="Please enter country name" />
-        <FormInput register={register("shortCountryCode")} id="shortCountryCode" type="text" name="shortCountryCode" label="Couhntry short code" placeholder="Please enter country short code e.g EN" />
-        <FormInput register={register("longCountryCode")} id="longCountryCode" type="text" name="longCountryCode" label="Country long code" placeholder="Please enter country long code e.g ENG" />
+      <form className='mt-6' onSubmit={handleSubmit(onSubmit)}>
+        <FormInput register={register("name")} id='country' type='text' label='Country name' name='name' placeholder='Please enter country name' />
+        <FormInput register={register("shortCountryCode")} id='shortCountryCode' type='text' name='shortCountryCode' label='Couhntry short code' placeholder='Please enter country short code e.g EN' />
+        <FormInput register={register("longCountryCode")} id='longCountryCode' type='text' name='longCountryCode' label='Country long code' placeholder='Please enter country long code e.g ENG' />
+        <input {...register("iconFlag")} type='file' name='iconFlag' id='longCountryCode' />
+
         {/* <Controller name="bases" control={control} render={({ field: { onChange, value, ref } }) => <Select className="mb-5" inputRef={ref} options={bases} value={bases.find((c) => c.value === value)} onChange={(val) => onChange(val.map((c) => c.value))} isMulti />} /> */}
-
-        <FormUpload register={register("iconFlag")} icon={<ArrowUpTrayIcon className="h-8 w-8" />} setValue={setValue} watch={watch} />
-
-        <Button type="submit" classVariation="btn btn--primary">
+        {/* <FormUpload register={register("iconFlag")} icon={<ArrowUpTrayIcon className='h-8 w-8' />} setValue={setValue} watch={watch} />
+         */}
+        <Button type='submit' classVariation='btn btn--primary'>
           Create
         </Button>
       </form>
