@@ -1,4 +1,6 @@
 import { Rubik } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
 const rubik = Rubik({ subsets: ["latin"] }, { weigth: [400, 600] });
@@ -15,6 +17,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={rubik.className}>
+        <ToastContainer />
         {children}
       </body>
     </html>

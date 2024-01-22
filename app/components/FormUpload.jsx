@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 
-const FormUpload = ({ register, icon, setValue, watch }) => {
+const FormUpload = ({ register, icon, setValue, watch, name }) => {
   const [showPrevImage, setShowPrevImage] = useState("");
 
   const handleImageChange = (e) => {
@@ -18,10 +18,8 @@ const FormUpload = ({ register, icon, setValue, watch }) => {
 
   const handleImage = (file) => {
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      const fileName = file.name;
-      setValue("iconFlag", fileName);
-      setShowPrevImage(imageUrl);
+      setValue("iconFlag", file);
+      setShowPrevImage(URL.createObjectURL(file));
     }
   };
 
@@ -51,10 +49,10 @@ const FormUpload = ({ register, icon, setValue, watch }) => {
               </p>
               <p className="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or GIF</p>
             </div>
-            <input id="dropzone-file" type="file" className="hidden" {...register} onChange={handleImageChange} />
           </label>
         </>
       )}
+      <input id="dropzone-file" type="file" name={name} className="hidden" {...register} onChange={handleImageChange} />
     </div>
   );
 };

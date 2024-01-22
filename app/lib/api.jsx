@@ -15,7 +15,9 @@ export async function fetchAllCountries() {
   Get all Countrires wit bases count 
 */
 export async function getCountiresWithCountBases() {
-  const res = await fetch(`${API_URL}/countries/countCountriesBases`);
+  const res = await fetch(`${API_URL}/countries/countCountriesBases`, {
+    next: { tags: ["countries"], revalidate: 60 },
+  });
   const data = await res.json();
   return data;
 }
