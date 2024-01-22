@@ -1,6 +1,6 @@
 import React from "react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { deleteCountry, getCountiresWithCountBases } from "@/app/lib/api.jsx";
+import { getCountiresWithCountBases } from "@/app/lib/api.jsx";
 
 import Breadcrumbs from "@/app/components/Breadcrumbs.jsx";
 import StackedList from "../../_admin-components/StackedList";
@@ -10,23 +10,22 @@ import Link from "next/link";
 
 const Countries = async () => {
   const { data } = await getCountiresWithCountBases();
-  const handleDelete = (id) => {};
 
   return (
     <>
-      <div className="flex items-center justify-between mb-5">
+      <div className='flex items-center justify-between mb-5'>
         <Breadcrumbs
           breadcrumbs={[
             { label: "Manager", href: "/manager" },
             { label: "Countries", href: "/manager/countries", active: true },
           ]}
         />
-        <Link href="countries/create">
-          <IconBtn name="Create" icon={<PlusIcon className="h-5 w-5 text-blue-400" />} />
+        <Link href='countries/create'>
+          <IconBtn name='Create' icon={<PlusIcon className='h-5 w-5 text-blue-400' />} />
         </Link>
       </div>
       {data.map((country) => (
-        <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} id={country._id} deleteItem={handleDelete(country._id)} />
+        <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} id={country._id} />
       ))}
 
       <Pagination />

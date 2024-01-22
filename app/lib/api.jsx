@@ -22,28 +22,6 @@ export async function getCountiresWithCountBases() {
   return data;
 }
 
-/* 
-  Method: DELETE
-  Delete country by id
-*/
-export async function deleteCountry(id) {
-  try {
-    const response = await fetch(`${API_URL}/bases/${id}`, {
-      method: "DELETE",
-    });
-
-    if (response.ok) {
-      return { success: true, message: "Item deleted successfully" };
-    } else {
-      const errorData = await response.json();
-      return { success: false, message: errorData.message };
-    }
-  } catch (error) {
-    console.error("Error deleting item:", error);
-    return { success: false, message: "Error deleting item" };
-  }
-}
-
 /* Get all Bases */
 export async function fetchAllBases() {
   const res = await fetch(`${API_URL}/bases`);
