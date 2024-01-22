@@ -68,3 +68,9 @@
 .gradient--light {
   background: linear-gradient(175deg, rgba(153, 229, 255, 0.38141193977591037) 50%, rgba(240, 251, 255, 0) 50%);
 }
+
+/* CONFIRM WRAPPER */
+
+.confirm-wrapper {
+  @apply fixed bg-slate-900/65 w-full h-full z-[2] top-0 right-0 bottom-0 left-0;
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import Image from "next/image";
 
-import { PencilIcon, TrashIcon } from "@heroicons/react/24/outline";
+import { PencilIcon } from "@heroicons/react/24/outline";
+import ConfirmDelete from "@/app/components/ConfirmDelete";
 
-const StackedList = ({ shortCode, countryName, flagIcon, countBases }) => {
+const StackedList = ({ shortCode, countryName, flagIcon, countBases, id }) => {
   return (
-    <div className="grid grid-cols-3 lg:grid-cols-[5rem,5rem,1fr_1fr_1fr] lg:grid-flow-col items-center gap-3 shadow-md p-5 mb-5 bg-zinc-50">
+    <div id={id} className="grid grid-cols-3 lg:grid-cols-[5rem,5rem,1fr_1fr_1fr] lg:grid-flow-col items-center gap-3 shadow-md p-5 mb-5 bg-zinc-50">
       {flagIcon && (
         <div className="w-8">
           <Image src={`http://localhost:5000/${flagIcon}`} width={40} height={40} alt={countryName} />
@@ -28,10 +29,11 @@ const StackedList = ({ shortCode, countryName, flagIcon, countBases }) => {
           <PencilIcon className="h-4 w-4 me-1" />
           <span className="hidden lg:block">Edit</span>
         </div>
-        <div className="flex items-center bg-red-400 text-white px-3 py-2 rounded-md cursor-pointer hover:bg-red-500">
+        <ConfirmDelete itemId={id} name={countryName} />
+        {/* <div className="flex items-center bg-red-400 text-white px-3 py-2 rounded-md cursor-pointer hover:bg-red-500">
           <TrashIcon className="h-4 w-4 me-1" />
           <span className="hidden lg:block">Delete</span>
-        </div>
+        </div> */}
       </div>
     </div>
   );

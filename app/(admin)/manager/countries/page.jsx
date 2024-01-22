@@ -1,6 +1,6 @@
 import React from "react";
 import { PlusIcon } from "@heroicons/react/24/outline";
-import { getCountiresWithCountBases } from "@/app/lib/api.jsx";
+import { deleteCountry, getCountiresWithCountBases } from "@/app/lib/api.jsx";
 
 import Breadcrumbs from "@/app/components/Breadcrumbs.jsx";
 import StackedList from "../../_admin-components/StackedList";
@@ -10,6 +10,7 @@ import Link from "next/link";
 
 const Countries = async () => {
   const { data } = await getCountiresWithCountBases();
+  const handleDelete = (id) => {};
 
   return (
     <>
@@ -25,7 +26,7 @@ const Countries = async () => {
         </Link>
       </div>
       {data.map((country) => (
-        <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} />
+        <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} id={country._id} deleteItem={handleDelete(country._id)} />
       ))}
 
       <Pagination />
