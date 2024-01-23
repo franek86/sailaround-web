@@ -74,3 +74,22 @@
 .confirm-wrapper {
   @apply fixed bg-slate-900/65 w-full h-full z-[2] top-0 right-0 bottom-0 left-0;
 }
+
+/* TOSTIFY */
+
+.toast {
+  @apply rounded-md px-4 py-2 flex justify-center items-center font-semibold;
+}
+
+.toast--success {
+  @apply text-white bg-green-400;
+}
+.toast--error {
+  @apply bg-red-400 border-red-400;
+}
+.toast--warning {
+  @apply text-yellow-400 border-yellow-400;
+}
+.toast--info {
+  @apply bg-blue-400 border-blue-400;
+}

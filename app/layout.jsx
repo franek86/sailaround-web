@@ -1,5 +1,5 @@
 import { Rubik } from "next/font/google";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "sonner";
 import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
 
@@ -17,7 +17,18 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={rubik.className}>
-        <ToastContainer />
+        <Toaster
+          position="top-right"
+          toastOptions={{
+            unstyled: true,
+            classNames: {
+              error: "toast toast--error",
+              success: "toast toast--success",
+              warning: "toast toast--warning",
+              info: "toast toast--info",
+            },
+          }}
+        />
         {children}
       </body>
     </html>
