@@ -1,5 +1,5 @@
 import FormInput from "./FormInput";
-import Button from "./Button";
+import { Button } from "./Button";
 
 const SignInForm = () => {
   return (

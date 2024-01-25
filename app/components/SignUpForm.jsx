@@ -1,6 +1,6 @@
 import FormInput from "./FormInput";
-import Button from "./Button";
 import FormCheckout from "./FormCheckout";
+import { Button } from "./Button";
 
 const SignUpForm = () => {
   return (

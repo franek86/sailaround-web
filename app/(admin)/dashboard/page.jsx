@@ -1,4 +1,5 @@
 import Title from "@/app/components/Title.jsx";
+
 import React from "react";
 
 const Dashboard = () => {

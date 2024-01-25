@@ -1,7 +1,7 @@
 import { Rubik } from "next/font/google";
 import { Toaster } from "sonner";
-import "react-toastify/dist/ReactToastify.css";
 import "./globals.css";
+import QueryProvider from "./components/QueryProvider";
 
 const rubik = Rubik({ subsets: ["latin"] }, { weigth: [400, 600] });
 
@@ -17,19 +17,21 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body suppressHydrationWarning={true} className={rubik.className}>
-        <Toaster
-          position="top-right"
-          toastOptions={{
-            unstyled: true,
-            classNames: {
-              error: "toast toast--error",
-              success: "toast toast--success",
-              warning: "toast toast--warning",
-              info: "toast toast--info",
-            },
-          }}
-        />
-        {children}
+        <QueryProvider>
+          <Toaster
+            position="top-right"
+            toastOptions={{
+              unstyled: true,
+              classNames: {
+                error: "toast toast--error",
+                success: "toast toast--success",
+                warning: "toast toast--warning",
+                info: "toast toast--info",
+              },
+            }}
+          />
+          {children}
+        </QueryProvider>
       </body>
     </html>
   );

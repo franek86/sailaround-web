@@ -6,7 +6,7 @@ import { toast } from "sonner";
 import { PencilIcon } from "@heroicons/react/24/outline";
 import ConfirmDelete from "@/app/components/ConfirmDelete";
 
-import { deleteCountry } from "@/app/lib/actions";
+import { deleteCountry } from "@/app/lib/actions.js";
 
 const StackedList = ({ shortCode, countryName, flagIcon, countBases, id }) => {
   const handleDelete = async () => {
@@ -45,10 +45,6 @@ const StackedList = ({ shortCode, countryName, flagIcon, countBases, id }) => {
         </div>
 
         <ConfirmDelete itemId={id} name={countryName} onDelete={handleDelete} />
-        {/* <div className="flex items-center bg-red-400 text-white px-3 py-2 rounded-md cursor-pointer hover:bg-red-500">
-          <TrashIcon className="h-4 w-4 me-1" />
-          <span className="hidden lg:block">Delete</span>
-        </div> */}
       </div>
     </div>
   );

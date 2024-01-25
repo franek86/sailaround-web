@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 
@@ -7,10 +8,28 @@ import Pagination from "@/app/components/Pagination";
 import { IconBtn } from "@/app/components/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-import { getCountiresWithCountBases } from "@/app/lib/api.jsx";
+import { fetchCountiresWithCountBases } from "@/app/lib/api.js";
+import { useQuery } from "@tanstack/react-query";
 
-const Countries = async () => {
-  const { data } = await getCountiresWithCountBases();
+const Countries = () => {
+  /* const { data } = await fetchCountiresWithCountBases();
+   */
+
+  const { data, isLoading } = useQuery({
+    queryKey: ["countries"],
+    queryFn: async () => {
+      try {
+        const res = await fetchCountiresWithCountBases();
+        return res.data;
+      } catch (error) {
+        throw error;
+      }
+    },
+  });
+
+  if (isLoading) {
+    return <div>Loading ...</div>;
+  }
 
   return (
     <>
@@ -25,6 +44,7 @@ const Countries = async () => {
           <IconBtn name="Create" icon={<PlusIcon className="h-5 w-5 text-blue-400" />} />
         </Link>
       </div>
+
       {data.map((country) => (
         <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} id={country._id} />
       ))}
