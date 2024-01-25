@@ -1,18 +1,14 @@
-"use server";
-import { revalidateTag } from "next/cache";
-import { axiosClient } from "./axiosInstance";
+import { axiosClient } from "@/app/lib/axiosInstance.js";
 
-const API_URL = process.env.BASE_API_URL;
-
-export const createCountry = async (formData) => {
+export const createCountry = async (data) => {
   try {
-    const data = new FormData();
-    data.append("name", formData.name);
-    data.append("shortCountryCode", formData.shortCountryCode);
-    data.append("longCountryCode", formData.shortCountryCode);
-    data.append("iconFlag", formData.iconFlag);
-    const response = await fetch(`${API_URL}/countries/create`, { body: data });
-    console.log(data);
+    const formData = new FormData();
+    formData.append("name", data.name);
+    formData.append("shortCountryCode", data.shortCountryCode);
+    formData.append("longCountryCode", data.shortCountryCode);
+    formData.append("iconFlag", data.iconFlag);
+    const response = await axiosClient.post("/countries/create", formData);
+    console.log(response);
   } catch (error) {
     return { success: false, message: "Error in create country" };
   }
