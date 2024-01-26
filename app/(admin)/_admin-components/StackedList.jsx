@@ -1,22 +1,16 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { toast } from "sonner";
 
 import { PencilIcon } from "@heroicons/react/24/outline";
 import ConfirmDelete from "@/app/components/ConfirmDelete";
 
-import { deleteCountry } from "@/app/lib/actions.js";
+import { useDeleteCountry } from "@/app/lib/mutations";
 
 const StackedList = ({ shortCode, countryName, flagIcon, countBases, id }) => {
-  const handleDelete = async () => {
-    try {
-      await deleteCountry(id);
-      toast.success("Country have been deleted");
-    } catch (error) {
-      toast.success("Country delete error");
-      console.log(error);
-    }
+  const deleteCountry = useDeleteCountry();
+  const handleDelete = async (id) => {
+    await deleteCountry.mutateAsync(id);
   };
 
   return (

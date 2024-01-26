@@ -8,25 +8,11 @@ import Pagination from "@/app/components/Pagination";
 import { IconBtn } from "@/app/components/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
-import { fetchCountiresWithCountBases } from "@/app/lib/api.js";
-import { useQuery } from "@tanstack/react-query";
 import Spinner from "@/app/components/Spinner.jsx";
+import { useCountries } from "@/app/lib/queries";
 
 const Countries = () => {
-  /* const { data } = await fetchCountiresWithCountBases();
-   */
-
-  const { data, isLoading } = useQuery({
-    queryKey: ["countries"],
-    queryFn: async () => {
-      try {
-        const res = await fetchCountiresWithCountBases();
-        return res.data;
-      } catch (error) {
-        throw error;
-      }
-    },
-  });
+  const { data, isLoading } = useCountries();
 
   if (isLoading) {
     return <Spinner />;
@@ -34,15 +20,15 @@ const Countries = () => {
 
   return (
     <>
-      <div className='flex items-center justify-between mb-5'>
+      <div className="flex items-center justify-between mb-5">
         <Breadcrumbs
           breadcrumbs={[
             { label: "Manager", href: "/manager" },
             { label: "Countries", href: "/manager/countries", active: true },
           ]}
         />
-        <Link href='countries/create'>
-          <IconBtn name='Create' icon={<PlusIcon className='h-5 w-5 text-blue-400' />} />
+        <Link href="countries/create">
+          <IconBtn name="Create" icon={<PlusIcon className="h-5 w-5 text-blue-400" />} />
         </Link>
       </div>
       {data.map((country) => (

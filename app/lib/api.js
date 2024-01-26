@@ -4,15 +4,15 @@ import { axiosClient } from "@/app/lib/axiosInstance.js";
   Method: GET
   Get all Countrires wit bases count 
 */
-export async function fetchCountiresWithCountBases() {
+export const fetchCountiresWithCountBases = async () => {
   try {
     const res = await axiosClient.get("/countries/countCountriesBases");
-    const data = await res.data;
+    const { data } = await res.data;
     return data;
   } catch (error) {
     return error;
   }
-}
+};
 
 /* Get all Bases */
 export async function fetchAllBases() {
