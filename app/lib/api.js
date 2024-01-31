@@ -8,7 +8,8 @@ export const fetchCountiresWithCountBases = async () => {
   try {
     const res = await axiosClient.get("/countries/countCountriesBases");
     const { data } = await res.data;
-    return data;
+    const { pagination } = await res.data;
+    return { data, pagination };
   } catch (error) {
     return error;
   }

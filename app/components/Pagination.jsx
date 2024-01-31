@@ -2,25 +2,47 @@ import React from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
-const Pagination = () => {
+const Pagination = ({ currentPage, totalPages, nextPage, prevPage }) => {
+  const pages = Array.from({ length: totalPages }, (_, index) => {
+    return index + 1;
+  });
+
+  const handleClick = (p) => {
+    console.log(p);
+  };
+
   return (
-    <div className="flex items-center justify-between">
-      <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+    <div className='flex items-center justify-between'>
+      <div className='hidden sm:flex sm:flex-1 sm:items-center sm:justify-between'>
         <div>
-          <nav className="isolate inline-flex -space-x-px rounded-sm shadow-sm" aria-label="Pagination">
-            <a href="#" className="relative inline-flex items-center rounded-l-md p-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-              <span className="sr-only">Previous</span>
-              <ChevronLeftIcon className="h-5 w-5" />
-            </a>
+          <nav className='isolate inline-flex -space-x-px rounded-sm shadow-sm' aria-label='Pagination'>
+            <div
+              onClick={() => {
+                handleClick("prev");
+              }}
+              className='cursor-pointer relative inline-flex items-center p-1 text-gray-400 hover:bg-gray-50'
+            >
+              <span className='sr-only'>Previous</span>
+              <ChevronLeftIcon className='h-5 w-5' />
+            </div>
+            {pages.map((pageNumb) => {
+              return (
+                <div
+                  key={pageNumb}
+                  onClick={() => handleClick(pageNumb)}
+                  className={`cursor-pointer relative z-10 inline-flex items-center px-3 py-2  
+                  ${pageNumb === currentPage ? "bg-blue-500 text-white" : "bg-grey-400 text-black"}
+                  text-sm`}
+                >
+                  {pageNumb}
+                </div>
+              );
+            })}
 
-            <a href="#" aria-current="page" className="relative z-10 inline-flex items-center px-3 bg-blue-500 text-sm text-white focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">
-              1
-            </a>
-
-            <a href="#" className="relative inline-flex items-center rounded-r-md p-1 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-              <span className="sr-only">Next</span>
-              <ChevronRightIcon className="h-5 w-5" />
-            </a>
+            <div onClick={() => handleClick("next")} className='cursor-pointer relative inline-flex items-center p-1 text-gray-400 hover:bg-gray-50'>
+              <span className='sr-only'>Next</span>
+              <ChevronRightIcon className='h-5 w-5' />
+            </div>
           </nav>
         </div>
       </div>
