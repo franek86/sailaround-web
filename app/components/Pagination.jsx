@@ -1,14 +1,23 @@
+"use client";
 import React from "react";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
+import { usePathname, useRouter, useSearchParams } from "next/navigation.js";
 
-const Pagination = ({ currentPage, totalPages, nextPage, prevPage }) => {
+const Pagination = ({ currentPage, totalPages, onPageChange, nextPage, prevPage }) => {
   const pages = Array.from({ length: totalPages }, (_, index) => {
     return index + 1;
   });
 
+  const pathName = usePathname();
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
   const handleClick = (p) => {
-    console.log(p);
+    const params = new URLSearchParams(searchParams);
+    params.set("page", p);
+    router.replace(`${pathName}?${params.toString()}`);
+    onPageChange(p);
   };
 
   return (

@@ -1,10 +1,11 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+
 import { fetchCountiresWithCountBases } from "./api";
 
-export function useCountries() {
+export function useCountries(params) {
   return useQuery({
-    queryKey: ["countries"],
-    queryFn: fetchCountiresWithCountBases,
+    queryKey: ["countries", params],
+    queryFn: () => fetchCountiresWithCountBases(params),
     placeholderData: keepPreviousData,
   });
 }

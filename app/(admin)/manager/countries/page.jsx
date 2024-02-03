@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 
 import Breadcrumbs from "@/app/components/Breadcrumbs.jsx";
@@ -10,9 +10,19 @@ import { PlusIcon } from "@heroicons/react/24/outline";
 
 import Spinner from "@/app/components/Spinner.jsx";
 import { useCountries } from "@/app/lib/queries";
+import { useSearchParams } from "next/navigation.js";
 
 const Countries = () => {
-  const { data, isLoading } = useCountries();
+  const searchParams = useSearchParams();
+  const pageQueryParams = searchParams.get("page");
+  const initialPageState = parseInt(pageQueryParams || 1);
+
+  const [page, setPage] = useState(initialPageState);
+  const { data, isLoading } = useCountries(page);
+
+  const handlePageChange = (newPage) => {
+    setPage(newPage);
+  };
 
   if (isLoading) {
     return <Spinner />;
@@ -36,7 +46,7 @@ const Countries = () => {
         <StackedList key={country._id} countryName={country.name} shortCode={country.shortCountryCode} flagIcon={country.iconFlag} countBases={country.baseCount} id={country._id} />
       ))}
 
-      <Pagination totalPages={pagination.totalPages} currentPage={pagination.page} />
+      <Pagination totalPages={pagination.totalPages} currentPage={pagination.page} onPageChange={handlePageChange} />
     </>
   );
 };

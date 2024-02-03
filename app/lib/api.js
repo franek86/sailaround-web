@@ -4,9 +4,12 @@ import { axiosClient } from "@/app/lib/axiosInstance.js";
   Method: GET
   Get all Countrires wit bases count 
 */
-export const fetchCountiresWithCountBases = async () => {
+export const fetchCountiresWithCountBases = async (searchParams) => {
   try {
-    const res = await axiosClient.get("/countries/countCountriesBases");
+    const queryParams = new URLSearchParams();
+    queryParams.append("page", searchParams || "");
+
+    const res = await axiosClient.get(`/countries/countCountriesBases?${queryParams}`);
     const { data } = await res.data;
     const { pagination } = await res.data;
     return { data, pagination };
