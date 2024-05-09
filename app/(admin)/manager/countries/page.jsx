@@ -9,7 +9,7 @@ import { IconBtn } from "@/app/components/Button";
 import { PlusIcon } from "@heroicons/react/24/outline";
 
 import Spinner from "@/app/components/Spinner.jsx";
-import { useCountries } from "@/app/lib/queries";
+import { useCountriesWithBases } from "@/app/lib/queries";
 import { useSearchParams } from "next/navigation.js";
 
 const Countries = () => {
@@ -18,7 +18,7 @@ const Countries = () => {
   const initialPageState = parseInt(pageQueryParams || 1);
 
   const [page, setPage] = useState(initialPageState);
-  const { data, isLoading } = useCountries(page);
+  const { data, isLoading } = useCountriesWithBases(page);
 
   const handlePageChange = (newPage) => {
     setPage(newPage);

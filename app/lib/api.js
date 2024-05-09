@@ -18,6 +18,16 @@ export const fetchCountiresWithCountBases = async (searchParams) => {
   }
 };
 
+export const fetchAllCountries = async() => {
+  try {
+    const res = await axiosClient.get('/countries');
+    const {data} = await res.data;
+    return {data}
+  } catch (error) {
+    return error
+  }
+}
+
 /* Get all Bases */
 export async function fetchAllBases() {
   try {

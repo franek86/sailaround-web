@@ -1,5 +1,5 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createCountry, deleteCountry } from "./actions";
+import { createCountry, deleteCountry, createBase } from "./actions";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
@@ -37,4 +37,23 @@ export function useDeleteCountry() {
       await queryClient.invalidateQueries({ queryKey: ["countries"] });
     },
   });
+}
+
+export function useCreateBase(){
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (data) => createBase(data),
+  
+    onSuccess: () => {
+      toast.success("Base successfully created", { duration: 5000 });
+      //router.push("/manager/bases");
+    },
+    onError: () => {
+      toast.error("Error on create base", { duration: 5000 });
+    },
+    /* ,
+    onSettled: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["countries"] });
+    }, */
+  })
 }

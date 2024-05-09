@@ -27,7 +27,7 @@ export const deleteCountry = async (id) => {
 
     if (response.status === 200) {
       const { message } = await response.data;
-      console.log(message);
+      
     } else {
       const errorData = await response.data;
       return { success: false, message: errorData.message };
@@ -36,3 +36,17 @@ export const deleteCountry = async (id) => {
     return { success: false, message: "Error deleting item" };
   }
 };
+
+/* 
+  Method: POST
+  Create base
+*/
+export const createBase = async(data) => {
+  try {
+    
+    await axiosClient.post("/bases/create", data);
+
+  } catch (error) {
+    return {success: false, message:"Error creating base"}
+  }
+}
