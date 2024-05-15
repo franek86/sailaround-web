@@ -1,3 +1,12 @@
+import HeroHome from "../components/HeroHome"
+
+
 export default function Home() {
-  return <h1>Home</h1>;
+  return (
+
+    <>
+      <HeroHome />
+    </>
+  )
+  
 }
